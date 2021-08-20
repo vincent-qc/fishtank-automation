@@ -6,7 +6,7 @@ class NeopixelController:
 
     ORDER = neopixel.GRB
     num_pixels = 144
-    pixels = neopixel.NeoPixel(board.NEOPIXEL, num_pixels, auto_write=False, pixel_order=ORDER)
+    pixels = neopixel.NeoPixel(board.D18, num_pixels, auto_write=False, pixel_order=ORDER, brightness = 0.2)
     
     # Color Wheel for Rainbow Color Modes
     def wheel(pos):
