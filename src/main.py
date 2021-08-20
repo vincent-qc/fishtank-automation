@@ -1,4 +1,7 @@
-npc = Neopixel_Controller()
+from neopixel_controller import NeopixelController
+
+
+npc = NeopixelController()
 
 npc.clear()
 

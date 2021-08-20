@@ -2,7 +2,7 @@ import time
 import board
 import neopixel
 
-class Neopixel_Controller:
+class NeopixelController:
 
     ORDER = neopixel.GRB
     num_pixels = 144
