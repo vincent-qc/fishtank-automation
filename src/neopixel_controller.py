@@ -8,7 +8,7 @@ class Neopixel_Controller:
     num_pixels = 144
     pixels = neopixel.NeoPixel(board.NEOPIXEL, num_pixels, auto_write=False, pixel_order=ORDER)
     
-
+    # Color Wheel for Rainbow Color Modes
     def wheel(pos):
         if pos < 0 or pos > 255:
             r = g = b = 0
@@ -29,27 +29,7 @@ class Neopixel_Controller:
 
         return (r, g, b) if ORDER in (neopixel.RGB, neopixel.GRB) else (r, g, b, 0)
 
-    def rainbow_cycle(wait):
-        for i in range(255):
-            pixels.fill(wheel(i))
-            pixels.show()
-            time.sleep(wait)
-
-    def rainbow_wave(wait):
-        for j in range(255):
-            for i in range(num_pixels):
-                pixel_index = (i * 256 // num_pixels) + j
-                pixels[i] = wheel(pixel_index & 255)
-            pixels.show()
-            time.sleep(wait)
-
-    def static(color):
-        pixels.fill(color)
-        pixels.show()
-    
-    def clear():
-        pixels.fill((0, 0, 0))
-
+    # Breathing Lighting Mode
     def breathe(color, time):
 
         # Increase Brightness
@@ -63,3 +43,30 @@ class Neopixel_Controller:
             pixels.fill((color[0] * i / 100, color[1] * i / 100, color[2] * i / 100))
             pixels.show()
             time.sleep(time)
+
+    # Rainbow Cycle Mode (All pixels are the same color at any given time)
+    def rainbow_cycle(wait):
+        for i in range(255):
+            pixels.fill(wheel(i))
+            pixels.show()
+            time.sleep(wait)
+
+    # Rainbow Wave Mode (All pixels are different colors at any given time)
+    def rainbow_wave(wait):
+        for j in range(255):
+            for i in range(num_pixels):
+                pixel_index = (i * 256 // num_pixels) + j
+                pixels[i] = wheel(pixel_index & 255)
+            pixels.show()
+            time.sleep(wait)
+
+    # Static Color Mode
+    def static(color):
+        pixels.fill(color)
+        pixels.show()
+    
+    # Clear Lighting
+    def clear():
+        pixels.fill((0, 0, 0))
+
+
