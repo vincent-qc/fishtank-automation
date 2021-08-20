@@ -9,7 +9,7 @@ class NeopixelController:
     pixels = neopixel.NeoPixel(board.D18, num_pixels, auto_write=False, pixel_order=ORDER, brightness = 0.2)
     
     # Color Wheel for Rainbow Color Modes
-    def wheel(pos):
+    def wheel(self, pos):
         if pos < 0 or pos > 255:
             r = g = b = 0
         elif pos < 85:
@@ -27,46 +27,46 @@ class NeopixelController:
             g = int(pos * 3)
             b = int(255 - pos * 3)
 
-        return (r, g, b) if ORDER in (neopixel.RGB, neopixel.GRB) else (r, g, b, 0)
+        return (r, g, b) if self.ORDER in (neopixel.RGB, neopixel.GRB) else (r, g, b, 0)
 
     # Breathing Lighting Mode
-    def breathe(color, time):
+    def breathe(self, color, time):
 
         # Increase Brightness
         for i in range(100):
-            pixels.fill((color[0] * i / 100, color[1] * i / 100, color[2] * i / 100))
-            pixels.show()
+            self.pixels.fill((color[0] * i / 100, color[1] * i / 100, color[2] * i / 100))
+            self.pixels.show()
             time.sleep(time)
 
         # Decrease Brightness
         for i in range(100, 0, -1):
-            pixels.fill((color[0] * i / 100, color[1] * i / 100, color[2] * i / 100))
-            pixels.show()
+            self.pixels.fill((color[0] * i / 100, color[1] * i / 100, color[2] * i / 100))
+            self.pixels.show()
             time.sleep(time)
 
     # Rainbow Cycle Mode (All pixels are the same color at any given time)
-    def rainbow_cycle(wait):
+    def rainbow_cycle(self, wait):
         for i in range(255):
-            pixels.fill(wheel(i))
-            pixels.show()
+            self.pixels.fill(self.wheel(i))
+            self.pixels.show()
             time.sleep(wait)
 
     # Rainbow Wave Mode (All pixels are different colors at any given time)
-    def rainbow_wave(wait):
+    def rainbow_wave(self, wait):
         for j in range(255):
-            for i in range(num_pixels):
-                pixel_index = (i * 256 // num_pixels) + j
-                pixels[i] = wheel(pixel_index & 255)
-            pixels.show()
+            for i in range(self.num_pixels):
+                pixel_index = (i * 256 // self.num_pixels) + j
+                self.pixels[i] = self.wheel(pixel_index & 255)
+            self.pixels.show()
             time.sleep(wait)
 
     # Static Color Mode
-    def static(color):
-        pixels.fill(color)
-        pixels.show()
+    def static(self, color):
+        self.pixels.fill(color)
+        self.pixels.show()
     
     # Clear Lighting
-    def clear():
-        pixels.fill((0, 0, 0))
+    def clear(self):
+        self.pixels.fill((0, 0, 0))
 
 
