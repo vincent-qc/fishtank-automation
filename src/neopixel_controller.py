@@ -36,20 +36,20 @@ class NeopixelController:
         for i in range(100):
             self.pixels.fill((round(color[0] * i / 100), round(color[1] * i / 100), round(color[2] * i / 100)))
             self.pixels.show()
-            time.sleep(wait)
+            time.sleep(wait / 1000)
 
         # Decrease Brightness
         for i in range(100, 0, -1):
             self.pixels.fill((round(color[0] * i / 100), round(color[1] * i / 100), round(color[2] * i / 100)))
             self.pixels.show()
-            time.sleep(wait)
+            time.sleep(wait / 1000)
 
     # Rainbow Cycle Mode (All pixels are the same color at any given time)
     def rainbow_cycle(self, wait):
         for i in range(255):
             self.pixels.fill(self.wheel(i))
             self.pixels.show()
-            time.sleep(wait)
+            time.sleep(wait / 1000)
 
     # Rainbow Wave Mode (All pixels are different colors at any given time)
     def rainbow_wave(self, wait):
@@ -58,7 +58,7 @@ class NeopixelController:
                 pixel_index = (i * 256 // self.num_pixels) + j
                 self.pixels[i] = self.wheel(pixel_index & 255)
             self.pixels.show()
-            time.sleep(wait)
+            time.sleep(wait / 1000)
 
     # Static Color Mode
     def static(self, color):
@@ -68,5 +68,6 @@ class NeopixelController:
     # Clear Lighting
     def clear(self):
         self.pixels.fill((0, 0, 0))
+        self.pixels.show()
 
 
