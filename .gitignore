@@ -128,6 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# MacOS
+# Other
 .DS_Store
 config.json
+discord.log
+bot-env/
