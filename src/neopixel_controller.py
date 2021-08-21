@@ -36,7 +36,7 @@ class NeopixelController:
         for i in range(100):
             self.pixels.fill((round(color[0] * i / 100), round(color[1] * i / 100), round(color[2] * i / 100)))
             self.pixels.show()
-            time.sleep(time)
+            time.sleep(wait)
 
         # Decrease Brightness
         for i in range(100, 0, -1):
