@@ -30,7 +30,7 @@ class NeopixelController:
         return (r, g, b) if self.ORDER in (neopixel.RGB, neopixel.GRB) else (r, g, b, 0)
 
     # Breathing Lighting Mode
-    def breathe(self, color, time):
+    def breathe(self, color, wait):
 
         # Increase Brightness
         for i in range(100):
@@ -42,7 +42,7 @@ class NeopixelController:
         for i in range(100, 0, -1):
             self.pixels.fill((round(color[0] * i / 100), round(color[1] * i / 100), round(color[2] * i / 100)))
             self.pixels.show()
-            time.sleep(time)
+            time.sleep(wait)
 
     # Rainbow Cycle Mode (All pixels are the same color at any given time)
     def rainbow_cycle(self, wait):
