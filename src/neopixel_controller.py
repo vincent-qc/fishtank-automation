@@ -29,18 +29,23 @@ class NeopixelController:
 
         return (r, g, b) if self.ORDER in (neopixel.RGB, neopixel.GRB) else (r, g, b, 0)
 
+    # Static Color Mode
+    def static(self, color):
+        self.pixels.fill(color)
+        self.pixels.show()
+        
     # Breathing Lighting Mode
     def breathe(self, color, wait):
 
         # Increase Brightness
-        for i in range(100):
-            self.pixels.fill((round(color[0] * i / 100), round(color[1] * i / 100), round(color[2] * i / 100)))
+        for i in range(255):
+            self.pixels.fill((round(color[0] * i / 255), round(color[1] * i / 255), round(color[2] * i / 255)))
             self.pixels.show()
             time.sleep(wait / 1000)
 
         # Decrease Brightness
-        for i in range(100, 0, -1):
-            self.pixels.fill((round(color[0] * i / 100), round(color[1] * i / 100), round(color[2] * i / 100)))
+        for i in range(255, 0, -1):
+            self.pixels.fill((round(color[0] * i / 255), round(color[1] * i / 255), round(color[2] * i / 255)))
             self.pixels.show()
             time.sleep(wait / 1000)
 
@@ -60,10 +65,7 @@ class NeopixelController:
             self.pixels.show()
             time.sleep(wait / 1000)
 
-    # Static Color Mode
-    def static(self, color):
-        self.pixels.fill(color)
-        self.pixels.show()
+
     
     # Clear Lighting
     def clear(self):
