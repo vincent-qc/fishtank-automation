@@ -93,27 +93,27 @@ class NeopixelController:
     wait = 1
 
     @staticmethod
-    def start(self):
+    def start():
         while True:
 
-            if self.mode == "static":
-                self.npc.static(self.color)
-            elif self.mode == "breathe":
-                self.npc.breathe(self.color, self.wait)
-            elif self.mode == "rainbow-cycle":
-                self.npc.rainbow_cycle(self.wait)
-            elif self.mode == "rainbow-wave":
-                self.npc.rainbow_wave(self.wait)
-            elif self.mode == "random-color":
-                self.npc.random_color()
-            elif self.mode == "random-pixel_colors":
-                self.npc.random_pixel_colors()
-            elif self.mode == "clear" or "off" or "none":
-                self.npc.clear()
+            if NeopixelController.mode == "static":
+                NeopixelController.static(NeopixelController.color)
+            elif NeopixelController.mode == "breathe":
+                NeopixelController.breathe(NeopixelController.color, NeopixelController.wait)
+            elif NeopixelController.mode == "rainbow-cycle":
+                NeopixelController.rainbow_cycle(NeopixelController.wait)
+            elif NeopixelController.mode == "rainbow-wave":
+                NeopixelController.rainbow_wave(NeopixelController.wait)
+            elif NeopixelController.mode == "random-color":
+                NeopixelController.random_color()
+            elif NeopixelController.mode == "random-pixel_colors":
+                NeopixelController.random_pixel_colors()
+            elif NeopixelController.mode == "clear" or "off" or "none":
+                NeopixelController.clear()
 
     @staticmethod
-    def set_mode(self, mode, color, wait):
-        self.mode = mode
-        self.color = color
-        self.wait = wait
+    def set_mode(mode, color, wait):
+        NeopixelController.mode = mode
+        NeopixelController.color = color
+        NeopixelController.wait = wait
 
