@@ -1,4 +1,5 @@
 import time
+import random
 import board
 import neopixel
 
@@ -33,7 +34,7 @@ class NeopixelController:
     def static(self, color):
         self.pixels.fill(color)
         self.pixels.show()
-        
+
     # Breathing Lighting Mode
     def breathe(self, color, wait):
 
@@ -65,8 +66,17 @@ class NeopixelController:
             self.pixels.show()
             time.sleep(wait / 1000)
 
-
+    # Sets the Entire Strip to a Random Color
+    def random_color(self):
+        self.pixels.fill((random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
+        self.pixels.show()
     
+    # Sets Each Pixel to a Random Color (idk why you would use this option lol)
+    def random_pixel_colors(self):
+        for i in range(self.num_pixels):
+            self.pixels[i] = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+        self.pixels.show()
+
     # Clear Lighting
     def clear(self):
         self.pixels.fill((0, 0, 0))
