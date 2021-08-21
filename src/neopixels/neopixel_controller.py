@@ -87,3 +87,33 @@ class NeopixelController:
             b = int(255 - pos * 3)
 
         return (r, g, b) if self.ORDER in (neopixel.RGB, neopixel.GRB) else (r, g, b, 0)
+
+    mode = "static"
+    color = (0, 0, 0)
+    wait = 1
+
+    @staticmethod
+    def start(self):
+        while True:
+
+            if self.mode == "static":
+                self.npc.static(self.color)
+            elif self.mode == "breathe":
+                self.npc.breathe(self.color, self.wait)
+            elif self.mode == "rainbow-cycle":
+                self.npc.rainbow_cycle(self.wait)
+            elif self.mode == "rainbow-wave":
+                self.npc.rainbow_wave(self.wait)
+            elif self.mode == "random-color":
+                self.npc.random_color()
+            elif self.mode == "random-pixel_colors":
+                self.npc.random_pixel_colors()
+            elif self.mode == "clear" or "off" or "none":
+                self.npc.clear()
+
+    @staticmethod
+    def set_mode(self, mode, color, wait):
+        self.mode = mode
+        self.color = color
+        self.wait = wait
+

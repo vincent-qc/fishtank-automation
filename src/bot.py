@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from neopixels.neopixel_controller import NeopixelController
 
 import json
 
@@ -28,5 +29,7 @@ async def on_ready():
         except Exception as e:
             exc = "{}: {}".format(type(e).__name__, e)
             print("{} command failed to load:\n{}".format(c, exc))
+
+    NeopixelController.start()
 
 client.run(data["token"])

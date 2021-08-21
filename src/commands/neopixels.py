@@ -8,13 +8,15 @@ class Neopixels(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.npc = NeopixelController()
+        self.modes = ["static", "breathe", "rainbow-cycle", "rainbow-wave", "random-color", "random-pixel-colors"]
 
     @commands.command()
     @commands.guild_only()
-    async def mode(self, ctx, mode, color, wait):
+    async def mode(self, ctx, mode, color="#FFFFFF", wait=1):
         """
         Change the Neopixels Lighting Mode
         """
+
         rgb = (255, 255, 255)
 
         # Convert HEX into RGB
@@ -25,32 +27,21 @@ class Neopixels(commands.Cog):
             await ctx.send("{} is not a valid color (Must be in HEX format)".format(color))
             return
 
-        if not isinstance(wait, int):
+        if not isinstance(int(wait), int):
             await ctx.send("{} is not a valid wait time".format(wait))
+            return
 
         # Make all lowercase
         mode = mode.lower()
 
-        # Set the Color Mode
-        if mode == "static":
-            self.npc.static(rgb)
-        elif mode == "breathe":
-            self.npc.breathe(rgb, wait)
-        elif mode == "rainbow-cycle":
-            self.npc.rainbow_cycle(wait)
-        elif mode == "rainbow-wave":
-            self.npc.rainbow_wave(wait)
-        elif mode == "random-color":
-            self.npc.random_color()
-        elif mode == "random-pixel_colors":
-            self.npc.random_pixel_colors()
-        elif mode == "clear" or "off" or "none":
-            self.npc.clear()
-        else:
-            await ctx.send("{} is not a valid mode - For a list of valid modes, use f!list-modes".format(mode))
-            return
+        # TODO: fix async send problem
 
-        await ctx.send("{} Mode Selected".format(mode.upper()))
+        if mode in self.modes:
+            NeopixelController.set_mode(mode)
+
+            await ctx.send("{} Mode Selected".format(mode.upper()))
+        else:
+            await ctx.send("{} is not a valid mode".format(mode))
 
 
 def setup(bot):
