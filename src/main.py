@@ -1,5 +1,4 @@
-from neopixel_controller import NeopixelController
-
+from src.neopixels.neopixel_controller import NeopixelController
 
 npc = NeopixelController()
 

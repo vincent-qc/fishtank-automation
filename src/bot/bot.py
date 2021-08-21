@@ -8,9 +8,9 @@ config = open("config.json")
 data = json.load(config)
 
 
-cogs: list = [""]
+cogs: list = ["commands.misc"]
 
-client = commands.Bot(command_prefix=data.prefix, help_command=None, intents=intents)
+client = commands.Bot(command_prefix=data["prefix"], help_command=None, intents=intents)
 
 
 @client.event
@@ -18,7 +18,7 @@ async def on_ready():
     print("Bot Online")
 
     # Change Bot Status
-    await client.change_presence(status=discord.Status.online, activity=discord.Game(data.status))
+    await client.change_presence(status=discord.Status.online, activity=discord.Game(data["status"]))
 
     # Load All Commands
     for c in cogs:
@@ -29,4 +29,4 @@ async def on_ready():
             exc = "{}: {}".format(type(e).__name__, e)
             print("{} command failed to load:\n{}".format(c, exc))
 
-client.run(data.token)
+client.run(data["token"])
