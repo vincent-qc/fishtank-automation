@@ -77,6 +77,10 @@ class NeopixelController:
             self.pixels[i] = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
         self.pixels.show()
 
+    # The Forbidden Mode
+    def epilipsy_mode(self, wait):
+        print("why")
+
     # Clear Lighting
     def clear(self):
         self.pixels.fill((0, 0, 0))
