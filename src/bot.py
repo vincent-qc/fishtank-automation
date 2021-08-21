@@ -8,7 +8,7 @@ config = open("config.json")
 data = json.load(config)
 
 
-cogs: list = ["commands.misc"]
+cogs: list = ["commands.misc", "commands.neopixels"]
 
 client = commands.Bot(command_prefix=data["prefix"], help_command=None, intents=intents)
 

@@ -1,4 +1,5 @@
-from src.neopixels.neopixel_controller import NeopixelController
+from neopixels.neopixel_controller import NeopixelController
+
 from discord.ext import commands
 
 
