@@ -1,4 +1,4 @@
-from neopixels.neopixel_controller import NeopixelController
+from neopixels.neopixel_controller import *
 
 from discord.ext import commands
 
@@ -7,7 +7,6 @@ class Neopixels(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-        self.npc = NeopixelController()
         self.modes = ["static", "breathe", "rainbow-cycle", "rainbow-wave", "random-color", "random-pixel-colors"]
 
     @commands.command()
@@ -37,7 +36,7 @@ class Neopixels(commands.Cog):
         # TODO: fix async send problem
 
         if mode in self.modes:
-            NeopixelController.set_mode(mode)
+            set_mode(mode, rgb, wait)
 
             await ctx.send("{} Mode Selected".format(mode.upper()))
         else:
