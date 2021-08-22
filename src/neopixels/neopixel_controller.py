@@ -107,19 +107,19 @@ def set_mode(mode, color, wait):
 
 
 def start():
-    while True:
+    if Options.mode == "static":
+        static(Options.set_color)
+    elif Options.mode == "breathe":
+        breathe(Options.set_color, Options.set_wait)
+    elif Options.mode == "rainbow-cycle":
+        rainbow_cycle(Options.set_wait)
+    elif Options.mode == "rainbow-wave":
+        rainbow_wave(Options.set_wait)
+    elif Options.mode == "random-color":
+        random_color()
+    elif Options.mode == "random-pixel_colors":
+        random_pixel_colors()
+    elif Options.mode == "clear" or "off" or "none":
+        clear()
 
-        if Options.mode == "static":
-            static(Options.set_color)
-        elif Options.mode == "breathe":
-            breathe(Options.set_color, Options.set_wait)
-        elif Options.mode == "rainbow-cycle":
-            rainbow_cycle(Options.set_wait)
-        elif Options.mode == "rainbow-wave":
-            rainbow_wave(Options.set_wait)
-        elif Options.mode == "random-color":
-            random_color()
-        elif Options.mode == "random-pixel_colors":
-            random_pixel_colors()
-        elif Options.mode == "clear" or "off" or "none":
-            clear()
+    start()
