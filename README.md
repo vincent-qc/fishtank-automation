@@ -19,3 +19,4 @@ That why i decided to automate my feeding and lights for my fishtank (the fish n
 **Software**
 - Python
 - CircuitPython
+- Adafruit MotorKit
