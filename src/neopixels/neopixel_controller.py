@@ -121,5 +121,3 @@ def start():
         random_pixel_colors()
     elif Options.mode == "clear" or "off" or "none":
         clear()
-
-    start()
